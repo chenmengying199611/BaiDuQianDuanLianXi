@@ -1,0 +1,46 @@
+.resume{
+	padding: 5px;
+	max-width: 600px;
+	/*这样可以保证就算浏览器压得很小的时候页面也不会乱，而是会消失，视觉上像被浏览器卷起来了一样*/
+	min-width: 500px;
+	/*margin: 0 auto;*/
+	border: 1px solid #eee;
+	font-family: "arial, helvetica, sans-serif";
+}
+html {
+	font-size: 10px;
+}
+h2 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 2.8rem;
+}
+h3 {
+	font-size: 1.8rem;
+}
+
+.info span,
+.connect span {
+	font-size: 1.4rem;
+}
+.info span:nth-of-type(2n+1),
+.connect span:nth-of-type(2n+1) {
+	margin-right: 5px;
+	font-weight: bold;
+}
+.info span:nth-of-type(2n),
+.connect span:nth-of-type(2n) {
+	margin-right: 20px;
+}
+.nengli dt,
+.edu dt,
+.pro dt {
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+.nengli dl dd,
+.edu dl dd,
+.pro dl dd {
+	margin-left: 0;
+	font-size: 1.4rem;
+}

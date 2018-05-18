@@ -1,0 +1,110 @@
+.resume {
+	padding: 5px;
+	max-width: 700px;
+	/*这样可以保证就算浏览器压得很小的时候页面也不会乱，而是会消失，视觉上像被浏览器卷起来了一样*/
+	min-width: 500px;
+	/*margin: 0 auto;*/
+	border: 1px solid #eee;
+	font-family: "arial, helvetica, sans-serif";
+}
+.h3{
+	width: 100%;
+	height: 80px;
+	border-bottom: 1px solid #66666663;
+}
+.h3 h3 {
+	line-height: 80px;
+	margin: 0;
+	width: 15%;
+	height: 80px;
+	background-color: #CCCCCC;
+	float: left;
+	font-size: 1.4rem;
+	font-weight: normal;
+	text-align: center;
+}
+.h3 div {
+	float: left;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+.h3 div span {
+	font-size: 1.2rem;
+}
+.h3 .nengli dl:first-child,
+.h3 .edu dl:first-child,
+.h3 .pro dl:first-child {
+	margin-top: 0;
+}
+.h3 .nengli dl:last-child,
+.h3 .edu dl:last-child,
+.h3 .pro dl:first-child {
+	margin-bottom: 0;
+}
+.h3 .nengli dl dt,
+.h3 .edu dl dt,
+.h3 .pro dl dt {
+	font-size: 1.2rem;
+}
+.h3 .nengli dl dd,
+.h3 .edu dl dd,
+.h3 .pro dl dd {
+	font-size: 1.2rem;
+}
+.h3 div dl dt,
+.h3 div dl dd {
+	float: left;	
+}
+html {
+	font-size: 10px;
+}
+h2 {
+	text-align: center;
+	font-size: 1.8rem;
+	color: #000;
+	background-color: #cccccc52;
+	margin: 0;
+	text-align: left;
+	padding-left: 25px;
+	height: 40px;
+	line-height: 40px;
+}
+
+.info span,
+.connect span {
+	font-size: 1.4rem;
+}
+.info span:nth-of-type(2n+1),
+.connect span:nth-of-type(2n+1) {
+	margin-right: 5px;
+	font-weight: bold;
+}
+.info span:nth-of-type(2n),
+.connect span:nth-of-type(2n) {
+	margin-right: 20px;
+}
+.nengli dt,
+.edu dt,
+.pro dt {
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+.nengli dl dd,
+.edu dl dd,
+.pro dl dd {
+	margin-left: 0;
+	font-size: 1.4rem;
+}
+
+/*清除浮动*/
+.clearfix:after {
+	content: "";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	zoom: 1;
+}
+
