@@ -1,0 +1,87 @@
+/*header {
+	width: 100%;
+	background-color: purple;
+	height: 40px;
+}
+.container {
+	display: flex;
+	height: 100px;
+}
+
+.left {
+	width: 120px;
+	background-color: pink;
+}
+.right {
+	width: 120px;
+	background-color: yellow;
+}
+.main {
+	flex: 1;
+	background-color: blue;
+}
+footer {
+	width: 100%;
+	background-color: red;
+	height: 40px;
+}*/
+
+/*双翼龙布局*/
+
+header {
+	width: 100%;
+	background-color: purple;
+	height: 40px;
+}
+.container {
+	overflow: hidden;
+	/*通过这一步可以确定中间盒子的宽度*/
+	/*这样就可以避免中间盒子被其他两个盒子压着的情况了*/
+	padding: 0 120px;
+	
+}
+.main {
+	height: 200px;
+	width: 100%;
+	background-color: blue;
+	float: left;
+}
+.left {
+	/*让盒子相对正常位置偏移多少*/
+	/*左边盒子经过前面两部之后  正常位置是压住中间盒子 所以要让他向左走*/
+	/*left的值正方向为--->*/
+	position: relative;
+	left: -120px;
+	/*让左边的盒子上去*/
+	/*margin-left是中间盒子宽度的100%*/
+	margin-left: -100%;
+	float: left;
+	height: 200px;
+	width: 120px;
+	background-color: pink;
+	
+}
+.right {
+	/*让盒子相对正常位置偏移多少*/
+	/*左边盒子经过前面两部之后  正常位置是压住中间盒子 所以要让他向右走*/
+	/*right的值正方向为<---*/
+	position: relative;
+	right: -120px;
+	/*让右边的盒子上去*/
+	/*margin-left:是自身的宽度的100%*/
+	margin-left: -120px;
+	float: left;
+	height: 200px;
+	width: 120px;
+	background-color: yellow;
+}
+
+/*如果不给父盒子container清除浮动的话  footer和container这样的block自动忽略浮动的元素 */
+/*所以container高度塌陷   footer会脱离文档流  也就是footer盒子会跑到header下面   但是footer里面的文字是inline他不会忽略浮动的元素*/
+/*所以footer的文字和盒子分离了   就叫做脱离文档流*/
+footer {
+	width: 100%;
+	background-color: red;
+	height: 40px;
+}
+

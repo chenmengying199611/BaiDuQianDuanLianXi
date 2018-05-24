@@ -1,0 +1,69 @@
+/*Flex*/
+/*.parent {
+	display: flex;
+}
+
+.leftTab {
+	flex: 3;
+	background-color: pink;
+	padding: 20px;
+	/*在这里只给leftTab设置了padding 但是.rightTab高度也变了  是因为display:flex默认是和最高的盒子一样高*/
+	/*虽然rightTab变高了  但是padding不变*/
+}
+/*.rightTab {
+	flex: 7;
+	background-color: yellow;
+}*/
+
+
+/*Float 双浮动的情况下 父盒子的高度塌陷  所以需要清除浮动   */ 
+/*.parent {*/
+	/*用overflow:hidden*/
+	/*清除浮动方式1:在浮动元素的后面添加额外的标签设置clear:both*/
+	/*方式2:给父元素加上overflow:hidden;或者overflow:auto;或者display:table;*/
+	/*给父盒子加上.clearfix标签*/
+}
+/*.leftTab {
+	float: left;
+	width: 30%;
+	background-color: pink;
+}
+.rightTab {
+	float: left;
+	width: 70%;
+	background-color: yellow;
+}
+.clearfix:after {
+	content:"."; 
+	display:block; 
+	height:0; 
+	visibility:hidden; 
+	clear:both; 
+}
+.clearfix { 
+	*zoom:1; 
+}*/
+
+
+/*position定位*/
+.parent {
+	position: relative;
+	height: 40px;
+}
+
+.leftTab {
+	width: 30%;
+	/*注意:绝对定位的盒子脱离了文档流所以不能把父盒子撑开*/
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: pink;
+}
+
+.rightTab {
+	width: 70%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: yellow;
+}

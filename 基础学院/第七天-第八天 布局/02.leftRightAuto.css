@@ -1,0 +1,147 @@
+/*双inline-block方法*/
+/*.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+}
+
+.left {
+	display: inline-block;
+	border: 1px solid #CCCCCC;
+	width: 120px;
+	/*顶端对齐*/
+	/*vertical-align: top;    
+}
+.right {
+	display: inline-block;
+	border: 1px solid #CCCCCC;
+	width: -moz-calc(100% - 140px);
+  	width: -webkit-calc(100% - 140px);
+  	width: calc(100% - 140px);
+	/*顶端对齐*/
+	/*vertical-align: top;  
+}*/
+
+/*双float方案*/
+/*.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+    overflow: hidden;
+}*/
+
+/*.left {
+	float: left;
+	border: 1px solid #CCCCCC;
+	width: 120px;
+	/*顶端对齐*/
+	/*vertical-align: top;
+	/*通过这个盒子的margin-right可以和右边的盒子产生一定的间距*/
+	/*margin-right: 5px;  */  
+/*}*/
+/*.right {
+	float: left;
+	border: 1px solid #CCCCCC;
+	width: -moz-calc(100% - 140px);
+  	width: -webkit-calc(100% - 140px);
+  	width: calc(100% - 140px);*/
+	/* 顶端对齐*/
+	/*vertical-align: top;  
+}*/
+
+/*float+margin-left*/
+/*下面两种方案则是利用了block级别的元素盒子的宽度具有填满父容器，并随着父容器的宽度自适应的流动特性。
+但是block级别的元素都是独占一行的，所以要想办法让两个block排列到一起。
+我们知道，block级别的元素会认为浮动的元素不存在，但是inline级别的元素能识别到浮动的元素。这样，block级别的元素就可以和浮动的元素同处一行了。*/
+
+/*.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+    overflow: hidden;
+}
+
+.left {
+	float: left;
+	border: 1px solid #CCCCCC;
+	width: 120px;
+	/*顶端对齐*/
+	/*vertical-align: top;*/
+	/*通过这个盒子的margin-right可以和右边的盒子产生一定的间距*/   
+/*}
+.right {
+	margin-left: 140px;*/
+	/*顶端对齐*/
+	/*vertical-align: top;  
+	border: 1px solid #CCCCCC;
+}*/
+
+/*absolute+margin-left方法*/
+/*另外一种让两个block排列到一起的方法是对左侧盒子使用position: absolute的绝对定位。这样，右侧盒子也能无视掉它。*/
+/*缺点*/
+/*没有清除浮动的方法，若左侧盒子高于右侧盒子，就会超出父容器的高度。因此只能通过设置父容器的min-height来放置这种情况。*/
+/*.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+    min-height: 200px;
+    position: relative;
+}
+
+.left {
+	position: absolute;
+	left: 0;
+	top: 0;
+	border: 1px solid #CCCCCC;
+	width: 120px;
+	/* 顶端对齐*/
+	/*vertical-align: top;*/
+	/*通过这个盒子的margin-right可以和右边的盒子产生一定的间距*/   
+}
+/*.right {
+	margin-left: 140px;
+	/*顶端对齐*/
+	/*vertical-align: top;  
+	border: 1px solid #CCCCCC;
+}*/
+
+/*使用float+BFC*/
+/*这个方案同样是利用了左侧浮动，但是右侧盒子通过overflow: auto;形成了BFC，因此右侧盒子不会与浮动的元素重叠。*/
+/*这种情况下，只需要为左侧的浮动盒子设置margin-right，就可以实现两个盒子的距离了。而右侧盒子是block级别的，所以宽度能实现自适应。*/
+/*.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+    overflow: hidden;
+}*/
+
+/*.left {
+	float: left;
+	border: 1px solid #CCCCCC;*/
+	/*// 顶端对齐*/
+	/*vertical-align: top;
+	margin-right: 20px;*/
+	/*通过这个盒子的margin-right可以和右边的盒子产生一定的间距*/   
+/*}
+.right {*/
+	/*// 顶端对齐*/
+	/*vertical-align: top;  
+	border: 1px solid #CCCCCC;
+	overflow: auto;
+}*/
+
+
+/*最好的方案flex*/
+.wrapper {
+	display: flex;
+	align-items: flex-start;
+	padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+		
+}
+.left {
+	flex: 0 0 auto;
+	width: 120px;
+	border: 1px solid #CCCCCC;
+}
+
+.right {
+	margin-left: 20px;
+	flex: 1 1 auto;
+	border: 1px solid #CCCCCC;
+}

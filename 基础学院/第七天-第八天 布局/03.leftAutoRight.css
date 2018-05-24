@@ -1,0 +1,54 @@
+/*双inline-block方法*/
+/*.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+}
+
+.left {
+	display: inline-block;
+	border: 1px solid #CCCCCC;*/
+	/*顶端对齐*/
+	/*vertical-align: top; 
+	border: 1px solid #CCCCCC;
+	width: -moz-calc(100% - 140px);
+  	width: -webkit-calc(100% - 140px);
+  	width: calc(100% - 140px);   
+}
+.right {
+	display: inline-block;
+	width: 120px;
+	border: 1px solid #CCCCCC;*/
+	/*顶端对齐*/
+	/*vertical-align: top;  
+}*/
+
+
+/*float+margin   清除浮动*/
+/*注意！！！采用这种方法时  要注意浏览器的加载顺序*/
+/*如果要右浮动的盒子放在左边盒子的下面*/
+/*浏览器就会先加载左边的盒子*/
+/*那么左边的div会占据一行*/
+/*就算右边的盒子给了float浮动*/
+/*也会是在下一行*/
+/*这时只要稍微换一下位置即可  让右侧浮动的盒子先加载这两个盒子就能在一行了*/
+.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+    overflow: hidden;
+}
+
+.left {
+	border: 1px solid #CCCCCC;
+	/*顶端对齐*/
+	vertical-align: top; 
+	/*width: -moz-calc(100% - 150px);*/
+  	width: -webkit-calc(100% - 150px);
+  	/*width: calc(100% - 150px);*/ 
+}
+.right {
+	float: left;
+	width: 120px;
+	border: 1px solid #CCCCCC;
+	/*顶端对齐*/
+	vertical-align: top;  
+}
