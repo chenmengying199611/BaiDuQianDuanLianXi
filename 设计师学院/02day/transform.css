@@ -1,0 +1,33 @@
+div {
+	display: inline-block;
+	margin-right: 30px;
+	text-align: center;
+	line-height: 68px;
+	width: 60px;
+	height: 68px;
+	background-color: #f0f0f0;
+	border: 1px solid #EEEEEE;
+}
+
+/*向左倾斜30deg*/
+.box1 {
+	transform: skewX(30deg);
+}
+
+/*压缩两倍*/
+.box2 {
+	transform: scale(0.5);
+}
+
+/*旋转45deg*/
+.box3 {
+	transform: rotate(45deg);
+}
+/*x轴平移10px y轴平移20px*/
+.box4 {
+	transform: translate(10px,20px);
+}
+/*同时包含以上属性*/
+.box5 {
+	transform: skewX(30deg) scale(0.5) rotate(45deg) translate(10px,20px);
+}
