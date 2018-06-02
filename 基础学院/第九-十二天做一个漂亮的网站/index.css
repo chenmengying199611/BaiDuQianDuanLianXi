@@ -1,0 +1,477 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/*清除浮动*/
+.clearfix::after {
+	content: "";
+	display: block;
+	height: 0;
+	overflow: hidden;
+	clear: both;
+}
+
+/*<header>部分开始*/
+header {
+	width: 100%;
+	height: 990px;
+	background: url(images/bg_02.png) no-repeat;
+	
+}
+.mask {
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 990px;
+	position: absolute;
+	background-color: rgba(0,0,0,0.35);
+}
+.commonWidth {
+	width: 1040px;
+	margin: 0 auto;
+	position: relative;
+}
+.header {
+	padding-top: 206px;
+}
+.header-text {
+	margin: 0 auto;
+	text-align: center;
+	color: #FFFFFF;
+	padding-left: 162px;
+	padding-right: 150px;
+	margin-bottom: 102px;
+}
+.header-text p {
+	font-size: 62px;
+}
+.header-text span {
+	font-size: 20px;
+}
+.header-sign {
+	margin: 0 auto;
+	width: 970px;
+	height: 250px;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+	text-align: center;
+	padding-top: 60px;
+	padding-bottom: 50px;
+}
+.header-sign p {
+	font-size: 16px;
+	margin-bottom: 20px;
+}
+
+/*只有设置为块状元素 margin-bottom才有效*/
+.header-sign span {
+	display: block;
+	font-size: 12px;
+	margin-bottom: 44px;
+}
+.submit-form form input {
+	height: 50px;
+	width: 288px;
+	background-color: transparent;
+	border: 1px solid #FFFFFF;
+	outline: none;
+	margin-right: 30px;
+	padding-left: 18px;
+}
+.submit-form form input::-ms-input-placeholder {
+	color: #FFFFFF;
+}
+.submit-form form input::-webkit-input-placeholder {
+	color: #FFFFFF;
+}
+.submit-form form button {
+	font-size: 12px;
+	padding: 19px 35px;
+	background-color: #FFFFFF;
+	border: none;
+}*/
+/*<header>部分开始*/
+
+/*<section>部分开始*/
+.section {
+}
+section .section .section-text {
+	margin-top: 88px;
+	padding-left: 162px;
+	padding-right: 150px;
+	margin-bottom: 82px;
+}
+section .section p {
+	text-align: center;
+	margin-bottom: 40px;
+}
+section .section span {
+	display: block;
+	text-align: center;
+	font-size: 42px;
+}
+.section-intro {
+	display: flex;
+	padding: 0 35px;
+	/*justify-content: space-between;*/
+	flex-wrap: wrap;
+}
+.section-detail-content {
+	flex: 1;
+	margin-bottom: 80px;
+}
+
+.section-detail.left {
+	width: 56px;
+	height: 100px;
+	background: url(images/icon_05.png) no-repeat;
+	float: left;
+}
+.section-detail.right {
+	margin-left: 56px;
+	padding: 0 60px 0 0;
+}
+.section-detail.right p {
+	font-size: 20px;
+	margin-bottom: 20px;
+	text-align: left;
+}
+.section-detail.right span {
+	font-size: 16px;
+	text-align: left;
+}
+.section-detail-content:nth-of-Type(1) {
+	margin-right: 175px;
+}
+.section-detail-content:nth-of-Type(3) {
+	margin-right: 175px;
+}
+.section-detail-content:nth-of-Type(2) .section-detail.left {
+	background: url(images/icon_07.png) no-repeat;
+}
+.section-detail-content:nth-of-Type(2) .section-detail.right {
+	padding: 0;
+}
+.section-detail-content:nth-of-Type(3) .section-detail.left {
+	background:url(images/icon_11.png) no-repeat;
+}
+
+.section-detail-content:nth-of-Type(4) .section-detail.left {
+	background:url(images/icon_12.png) no-repeat;
+}
+.section-detail-content:nth-of-Type(4) .section-detail.right {
+	padding: 0;
+}
+/*section开始*/
+
+/*中间部分开始*/
+.show-content {
+	position: relative;
+	width: 100%;
+	height: 800px;
+	background: url(images/bg_04_02.png) no-repeat;
+}
+.show-content .mask {
+	height: 800px;
+}
+.show-content {
+	padding: 100px 35px;
+}
+.show-content .non-mask {
+	position: relative;
+	margin: 0 auto;
+}
+.show-content .show-left {
+	width: 508px;
+	float: left;
+	color: #FFFFFF;
+}
+.show-content .show-left p {
+	font-size: 42px;
+	margin-bottom: 96px;
+	padding-right: 150px;
+}
+.show-content .show-left span {
+	display: block;
+	font-size: 18px;
+	margin-bottom: 52px;
+	padding-right: 150px;
+}
+.show-content .show-left button {
+	padding: 24px 40px;
+	background-color: #FFFFFF;
+	border: none;
+	margin-right: 30px;
+}
+.show-content .show-left button:last-child {
+	background: transparent;
+	border: 1px solid #FFFFFF;
+	color: #FFFFFF;
+}
+.show-content .show-right {
+	position: absolute;
+	top: 98px;
+	right: 0;
+	padding: 32px 0 32px 60px;
+	border: 1px solid #FFFFFF;
+	border-radius: 10px;
+}
+.show-content .show-right::after {
+	content: "";
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	border: 1px solid #FFFFFF;
+	position: absolute;
+	top: 50%;
+	left: 20px;
+}
+/*中间部分结束*/
+
+/*中间内容部分开始*/
+.content {
+	padding-top: 100px;
+}
+.content .commonWidth {
+	/*padding: 0 100px;*/
+}
+.content .commonWidth p {
+	text-align: center;
+	font-size: 42px;
+	margin-bottom: 78px;
+}
+.content .flex-content {
+	display: flex;
+	justify-content: space-between;
+}
+.content .flex-content .content-detail {
+	flex: 1;
+	text-align: center;
+	padding-right: 40px;
+	margin-bottom: 134px;
+}
+.content .flex-content .content-detail img {
+	display: block;
+	margin: 0 auto;
+}
+.content .flex-content .content-detail:last-child {
+	padding-right: 0;
+}
+
+/*图片描述部分开始*/
+.pic-flex {
+	padding-top: 115px;
+	padding-bottom: 100px;
+}
+.pic-flex .pic-floo1 {
+	display: table;
+	margin-bottom: 78px;
+}
+.pic-flex .pic-floo1 img {
+	float: left;
+}
+.pic-flex .pic-floo1 .pic-decri {
+	margin-left: 571px;
+}
+.pic-flex .pic-floo1 .pic-decri {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 100px;
+}
+.pic-flex .pic-floo1 .pic-decri .pic-header,
+.pic-flex .pic-floo2 .pic-decri .pic-header {
+	font-size: 20px;
+	margin-bottom: 36px;
+	line-height: 30px;
+}
+.pic-flex .pic-floo2 img {
+	float: right;
+}
+.pic-flex .pic-floo2 .pic-decri {
+	margin-right: 571px;
+	padding: 72px 50px 0 0px;
+}
+.pic-flex .pic-floo2 .pic-decri .pic-body {
+	padding-right: 50px;
+}
+
+/*人物介绍部分*/
+.awesome-crew {
+	margin-bottom: 100px;
+}
+.awesome-crew .awesome-header {
+	padding: 96px 147px 64px;
+	
+}
+.awesome-crew .awesome-header h3 {
+	font-size: 42px;
+	text-align: center;
+}
+.awesome-crew .awesome-header p {
+	text-align: center;
+	line-height: 28px;
+}
+.awesome-body {
+	display: flex;
+	flex-flow: wrap;
+}
+.awesome-body-detail {
+	width: 470px;
+	height: 340px;
+	margin-bottom: 32px;
+}
+.awesome-body-detail:first-child {
+	background: url(images/bg_13.png) no-repeat;
+	margin-right: 28px;
+	position: relative;
+}
+.awesome-body-detail:first-child .mask {
+	height: 340px;
+}
+.awesome-body-detail:first-child .awesome-body-content {
+	position: relative;
+	text-align: center;
+	padding-top: 110px;
+	color: #FFFFFF;
+}
+.awesome-body-detail:first-child p {
+	font-size: 20px;
+	margin-bottom: 17px;
+}
+.awesome-body-detail:first-child span {
+	display: block;
+	margin-bottom: 37px;
+}
+.awesome-body-detail:first-child a {
+	display: inline-block;
+	width: 56px;
+	height: 56px;
+	border: 1px solid #FFFFFF;
+	border-radius: 50%;
+	position: relative;
+	margin-right: 26px;
+	cursor: pointer;
+}
+.awesome-body-detail:first-child i {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	color: #FFFFFF;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -7.5px;
+	margin-top: -7.5px;
+}
+.awesome-body-detail:nth-child(2) {
+	background: url(images/bg_14.png) no-repeat;
+}
+.awesome-body-detail:nth-child(3) {
+	background: url(images/bg_15.png) no-repeat;
+	margin-right: 28px;
+}
+.awesome-body-detail:last-child {
+	background: url(images/bg_16.png) no-repeat;
+}
+
+/*联系我们部分*/
+.connect-flex {
+	display: flex;
+}
+.connect-flex .connect-form {
+	margin-top: 70px;
+	width: 461px;
+	margin-right: 40px;
+}
+.connect-flex .connect-form form {
+	border: 1px solid #EEEEEE;
+	border-radius: 5px;
+	padding: 50px;
+}
+.connect-flex .connect-form form h4 {
+	margin-bottom: 46px;
+	text-align: center;
+	font-size: 16px;
+}
+.connect-flex .connect-form input {
+	display: block;
+	width: 336px;
+	height: 52px;
+	margin-bottom: 25px;
+	padding-left: 20px;
+	width: 100%;
+}
+.connect-flex .connect-form textarea {
+	height: 142px;
+	padding-top: 18px;
+	padding-left: 20px;
+	margin-bottom: 28px;
+	width: 100%;
+}
+.connect-flex .connect-form button {
+	padding: 20px 165px;
+	border: 0;
+	background-color: #000000;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+.connect-flex .connect-info {
+	padding-left: 100px;
+	width: 501px;
+}
+.connect-flex .connect-info h3 {
+	padding-top: 160px;
+	margin-bottom: 38px;
+	font-size: 42px;
+}
+.connect-flex .connect-info .info {
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 70px;
+}
+.connect-info-footer {
+	padding-right: 170px;
+}
+.connect-info-footer p {
+	line-height: 24px;
+}
+.connect-info-footer p i {
+	display: block;
+	width: 30px;
+	float: left;
+	font-size: 20px;
+}
+.connect-info-footer p span {
+	display: block;
+	margin-left: 40px;
+}
+
+/*尾部开始*/
+.footer {
+	margin-top: 65px;
+	width: 100%;
+	height: 408px;
+	background-color: #000000;
+	color: #FFFFFF;
+	padding-top: 80px;
+	position: relative;
+}
+.footer ul {
+	list-style: none;
+	display: inline-block;
+	width: 24%;
+}
+.footer ul li:first-child {
+	font-weight: bold;
+}
+.footer ul li {
+	margin-bottom: 34px;
+}
+.footer ul:last-child {
+	position: absolute;
+}
+.footer ul li i {
+	display: inline-block;
+	margin-right: 20px;
+}
