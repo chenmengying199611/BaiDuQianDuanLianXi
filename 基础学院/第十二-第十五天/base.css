@@ -1,0 +1,473 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+ul {
+	list-style: none;
+}
+/*让两个div盒子在一行内布局  可以用flex*/
+/*这里的container和左侧的left-bar 以及left-nav都不用设置宽高 因为left-nav的高度是被撑开的 而由于container的布局设置为了display:flex 所以他里面的
+ 子元素 高度自动和最高的那个子元素对齐*/
+
+/*布局：最外层contaier设置为display:flex  然后是最左边导航栏  中间导航栏  以及右侧内容栏三个部分  其中左边两个固定宽度  右侧内容栏设置flex=1 即把剩下的部分填满*/
+.container {
+	display: flex;
+	position: relative;
+	/*flex-wrap: wrap;*/
+}
+.left-bar {
+	width: 100px;
+	background-color: rgb(29,37,49);
+}
+
+.left-bar ul:first-child {
+	list-style: none;
+}
+.left-bar ul:first-child li {
+	position: fixed;
+	left: 20px;
+}
+.left-bar ul:first-child li i {
+	color: #FFFFFF;
+	font-size: 40px;
+	position: relative;
+	top: 10px;
+	left: 10px;
+}
+.left-bar ul:first-child li a {
+	display: block;
+	width: 60px;
+	height: 60px;
+	background-color: rgb(37,154,243);
+	border-radius: 50%;
+	text-decoration: none;
+}
+.left-bar ul:first-child li:first-child {
+	top: 20px;
+}
+.left-bar ul:first-child li:first-child i {
+	top: 5px;
+	left: 5px;
+}
+.left-bar ul:first-child li:nth-child(2) {
+	
+	top: 100px;
+}
+.left-bar ul:first-child li:nth-child(2) a{
+	background-color: rgb(149,128,227);
+}
+.left-bar ul:first-child li:nth-child(3) {
+	top: 180px;
+}
+.left-bar ul:first-child li:nth-child(3) a{
+	background-color: rgb(233,72,44);
+}
+.left-bar ul:first-child li:nth-child(4) {
+	top: 260px;
+}
+.left-bar ul:first-child li:nth-child(4) a{
+	background-color: transparent;
+	border: 3px solid rgb(45,56,72);
+}
+.left-bar ul:first-child li:nth-child(4) a i{
+	color: rgb(45,56,72);
+	position: relative;
+	top: 8px;
+	left: 8px;
+}
+.left-bar ul:nth-child(2) {
+	list-style: none;
+}
+.left-bar ul:nth-child(2) li {
+	display: inline-block;
+	position: fixed;
+	bottom: 20px;
+}
+.left-bar ul:nth-child(2) li:first-child {
+	left: 26px;
+}
+.left-bar ul:nth-child(2) li:last-child {
+	left: 58px;
+}
+
+/*左侧导航栏部分开始*/
+.left-nav {
+	width: 250px;
+	background: rgb(34,44,60);
+	padding: 28px;
+	position: relative;
+}
+.left-nav ul {
+	list-style: none;
+	border-bottom: 1px solid rgb(42,53,71);
+}
+.left-nav ul li {
+	padding: 13px 0;
+}
+.left-nav ul li a {
+	text-decoration: none;
+}
+.left-nav ul li a {
+	color: #b7c0cd;
+}
+.left-nav ul li:first-child a{
+	color: #5b6779;
+}
+.left-nav ul li:first-child  i {
+	color: rgb(71,83,100);
+	float: right;
+	font-size: 20px;
+}
+.left-nav ul:nth-child(3) {
+	border-bottom: none;
+	margin-bottom: 270px;
+}
+.left-nav ul li:last-child {
+	margin-bottom: 13px;
+	
+}
+.left-nav ul li:nth-child(3) span,
+.left-nav ul:nth-child(3)  li:nth-child(2) span {
+	padding: 1px 5px;
+	background-color: rgb(45,160,247);
+	border-radius: 5px;
+	font-size: 12px;
+	color: #FFFFFF;
+	float: right;
+}
+.left-nav ul:nth-child(3) li:nth-child(4) span {
+	padding: 0px 8px;
+	border-radius: 50%;
+	background: rgb(213,50,21);
+	color: #FFFFFF;
+	float: right;
+}
+.left-nav ul:nth-child(2) li i {
+	color: rgb(183,192,205);
+}
+.left-nav ul:last-child {
+	position: absolute;
+	bottom: 0px;
+}
+.left-nav ul:last-child li {
+	float: left;
+	font-size: 12px;
+	color: #FFFFFF;
+	padding-bottom: 0;
+	margin-right: 20px;
+}
+/*进度条*/
+.left-nav ul:last-child {
+	padding-right: 28px;
+}
+.left-nav ul:last-child li:nth-child(2) {
+	margin-right: 0;
+}
+.left-nav ul:last-child li:last-child {
+	width: 100%;
+	height: 4px;
+	padding: 0;
+	margin-top: 16px;
+	background-color: rgb(71,83,100);
+	border-radius: 3px;
+}
+.left-nav ul:last-child li:last-child:after {
+	content: "";
+	width: 30%;
+	height: 4px;
+	position: absolute;
+	border-radius: 3px;
+	background-color: rgb(141,115,229);
+}
+/*右侧内容栏部分为  用户信息栏  用户列表栏 以及用户留言栏*/
+.right-content {
+	flex: 1;
+	
+}
+/*不过因为right-content没有设置为flex布局  所以userInfo div盒子可以占据全部的宽度*/
+/*用户信息栏 也要进行flex布局  将左侧的h3和右侧的头像信息部分分为两列布局  最好设置为竖直方向上居中*/
+.userInfo {
+	padding-right: 20px;
+	padding-left: 30px;
+	position: relative;
+	display: flex;
+	height: 80px;
+	width: 100%;
+	/*设置竖直方向上居中*/
+	-webkit-align-items: center;
+	/*border-bottom: 1px solid rgb(230,233,236);*/
+	flex-wrap: wrap;
+}
+.userInfo h3 {
+	font-weight: normal;
+	color: #354052;
+}
+/*头像部分也要设置为flex布局  将图片和名字分为两列    最好设置为竖直方向上居中*/
+.userInfo .Info {
+	display: flex;
+	position: absolute;
+	right: 68px;
+	/*设置竖直方向上居中*/
+	-webkit-align-items: center;
+}
+.userInfo .Info .text-info p:first-child {
+	color: rgb(119,184,245);
+}
+.userInfo .Info .text-info p:nth-child(2){
+	font-size: 14px;
+}
+
+.userInfo .right-angle {
+	position: absolute;
+	right: 20px;
+	
+}
+.userInfo .right-angle  i{
+	font-size: 12px;
+	color: rgb(191,199,216);
+}
+
+/*下面的用户列表以及留言内容又是两列布局*/
+.content-flex {
+	display: flex;
+}
+.content-flex .userList {
+	width: 400px;
+	border-right: 1px solid rgb(230,233,236);
+}
+.content-flex .userList .search {
+	padding: 14px 30px 16px;
+	position: relative;
+}
+.content-flex .userList .search input {
+	padding: 12px;
+	width: 100%;
+	outline: none;
+	border: 1px solid #CCCCCC;
+	border-radius: 3px;
+}
+.content-flex .userList .search i {
+	position: absolute;
+	right: 40px;
+	top: 30px;
+}
+.content-flex .userList  ul {
+	list-style: none;
+}
+/*当用户列表为激活状态时*/
+.content-flex .userList  ul li.active {
+	border-left: 3px solid rgb(35,153,241);
+}
+.content-flex .userList  ul li.active .text-info p:first-child {
+	position: relative;
+	margin-left: 20px;
+}
+.content-flex .userList  ul li.active .text-info p:first-child:before {
+	color: rgb(35,153,241);
+	content: "";
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: rgb(35,153,241);
+	position: absolute;
+	left: -20px;
+	top: 5px;
+	margin-right: 20px;
+}
+.content-flex .userList  ul li {
+	height: 100%;
+	border-top: 1px solid #CCCCCC;
+	padding: 15px 18px 20px 28px;
+	
+}
+.content-flex .userList  ul li .Info {
+	display: flex;
+	position: relative;
+}
+.content-flex .userList  ul li .Info .pic {
+	margin-right: 20px;
+}
+.content-flex .userList  ul li .Info .right-angle {
+	position: absolute;
+	right: 0px;
+}
+.content-flex .userList  ul li .text {
+	display: flex;
+	font-size: 14px;
+	line-height: 20px;
+	margin-top: 12px;
+}
+/*如何让flex布局下的子元素高度自适应*/
+.content-flex .userList  ul li .text div {
+	display: flex;
+	flex-direction: column;
+	height: 30px;
+}
+
+.content-flex .userList  ul li .text div span {
+	flex: 1;
+	text-align: center;
+	width: 30px;
+	line-height: 30px;
+	background-color: rgb(41,157,245);
+	color: #FFFFFF;
+	border-radius: 50%;
+	margin-left: 38px;
+}
+
+.content-flex .right-message {
+	flex: 1;
+}
+
+/*右侧内容留言部分*/
+.right-message .message-header {
+	height: 72px;
+	align-items: center;
+	display: flex;
+	padding-left: 26px;
+	padding-right: 16px;
+	border-bottom: 1px solid #CCCCCC;
+	position: relative;
+}
+.right-message .message-header h3 {
+	font-weight: normal;
+}
+.right-message .message-header a {
+	text-decoration: none;
+	padding: 4px 8px;
+	background-color: #cccccc47;
+	cursor: pointer;
+	margin-right: -5px;
+}
+.right-message .message-header a i {
+	color: #CCCCCC;
+	font-size: 14px;
+}
+.right-message .message-header .btn-group {
+	position: absolute;
+	right: 176px;
+	margin-right: 23px;
+}
+.right-message .message-header .btn-group a:first-child {
+	border-radius: 3px 0 0 3px;
+	border-right: 1px solid #b7c0cd45;
+}
+.right-message .message-header .btn-group a:last-child {
+	border-radius: 0 3px 3px 0;
+	border-left: 1px solid #b7c0cd45;
+}
+.right-message .message-header .right-angle {
+	/*为了让右边的元素都在竖直方向上居中*/
+	align-items: center;
+	display: flex;
+	position: absolute;
+	right: 16px;
+}
+.right-message .message-header .right-angle a {
+	margin-right: 0;
+}
+.right-message .message-header .right-angle a:nth-child(3) {
+	border-radius: 3px 0 0 3px;
+	border-right: 1px solid #b7c0cd45;
+}
+.right-message .message-header .right-angle a:last-child {
+	border-radius: 0 3px 3px 0;
+	
+}
+.right-message .message-header .right-angle span:first-child {
+	display: inline-block;
+	width: 1px;
+	height: 30px;
+	background-color: #CCCCCC;
+	margin-right: 23px;
+}
+.right-message .message-header .right-angle span:nth-child(2) {
+	display: inline-block;
+	margin-right: 15px;
+	color: #56688a;
+}
+
+/*留言主体部分*/
+.message-body {
+	padding-left: 28px;
+	padding-right: 64px;
+}
+.message-body ul {
+	margin-top: 28px;
+	
+}
+.message-body ul li {
+	margin-bottom: 28px;
+}
+
+.message-body ul li img {
+	float: left;
+	margin-right: 16px;
+}
+.message-body ul li div {
+	overflow: auto;
+}
+.message-body ul li div span {
+	display: block;
+	margin-bottom: 14px;
+}
+.message-body ul li div p {
+	margin-bottom: 15px;
+}
+.message-body .slice-line {
+	display: block;
+	text-align: center;
+	position: relative;
+}
+
+/*如果这个伪元素要相对于的位置是.slice-line  那么记得要给.slice-line设置为position:relative  也是相对于.slice-line的大小*/
+.message-body .slice-line:before {
+	content: "";
+	width: 40%;
+	height: 1px;
+	background-color: #CCCCCC;
+	position: absolute;
+	left: 0;
+	top: 50%;
+}
+.message-body .slice-line:after {
+	content: "";
+	width: 40%;
+	height: 1px;
+	background-color: #CCCCCC;
+	position: absolute;
+	right: 0;
+	top: 50%;
+}
+.message-body ul li input {
+	width: 100%;
+	padding: 22px 0 22px 20px;
+	outline: none;
+	border: 1px solid #EEEEEE;
+	border-radius: 3px;
+	margin-top: 30px;
+	padding-left: 60px;
+}
+.message-body ul li .input {
+	position: relative;
+}
+.input i {
+	display: inline-block;
+	width: 54px;
+	height: 59px;
+	background-color: rgb(251,252,253);
+	font-size: 27px;
+	line-height: 54px;
+	text-align: center;
+	position: absolute;
+	left: 1px;
+	top: 31px;
+}
