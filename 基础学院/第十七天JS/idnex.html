@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+		function getData(){
+			var val1=document.getElementById("first-number").value;
+			var val2=document.getElementById("second-number").value;
+			var arr=[val1,val2];
+			return arr;
+		}
+		
+		function check(val){
+			var reg = /^\d+(\.\d+)?$/;
+			if(reg.test(val)==true){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+			
+		
+		var jia=document.getElementById("add-btn");
+		var jian=document.getElementById("minus-btn");
+		var cheng=document.getElementById("times-btn");
+		var chu=document.getElementById("divide-btn");
+		var res=document.getElementById("result");
+//		
+		jia.onclick=function(){
+			var rval1=getData()[0];
+			var rval2=getData()[1];
+			if(check(rval1)&&check(rval2)){
+				res.innerHTML=Number(rval1)+Number(rval2);
+				
+			}else{
+				alert("请输入数字")
+			}
+		}
+		
+		jian.onclick=function(){
+			var rval1=getData()[0];
+			var rval2=getData()[1];
+			if(check(rval1)&&check(rval2)){
+				res.innerHTML=Number(rval1)-Number(rval2);
+				
+			}else{
+				alert("请输入数字")
+			}
+		}
+		
+		cheng.onclick=function(){
+			var rval1=getData()[0];
+			var rval2=getData()[1];
+			if(check(rval1)&&check(rval2)){
+				res.innerHTML=Number(rval1)*Number(rval2);
+				
+			}else{
+				alert("请输入数字")
+			}
+		}
+		
+		chu.onclick=function(){
+			var rval1=getData()[0];
+			var rval2=getData()[1];
+			if(check(rval1)&&check(rval2)){
+				
+				if(Number(rval2)){
+					res.innerHTML=Number(rval1)/Number(rval2);
+				}
+				else{
+					alert("除数不能为0")
+				}
+				
+			}else{
+				alert("请输入数字")
+			}
+		}
+    </script>
+</body>
+</html>

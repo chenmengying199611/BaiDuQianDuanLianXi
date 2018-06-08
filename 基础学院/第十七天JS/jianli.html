@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+			  padding:0;
+			  margin:0;
+			  
+			}
+			html {
+			  height:100%;
+			}
+			body{
+			  height:100%;
+			}
+			.leftDiv{
+			  padding-top:20px;
+			  width:190px;
+			  height:100%;
+			  background-color:#16163eed;
+			  float:left;
+			}
+			/*  头像*/
+			.picture {
+			  border:3px solid #fff;
+			  width:75px;
+			  height:75px;
+			  margin-left:34.5px;
+			  
+			}
+			.picture img {
+			  width:100%;
+			  height:100%;
+			  display:block;
+			}
+			.produce,.skill,.message{
+			  color:#fff;
+			  padding-left:34.5px;
+			  padding-top:20px;
+			  font-size:12px;
+			}
+			.produce p {
+			  margin-bottom:20px;
+			}
+			.produce i {
+			  display:inline-block;
+			  margin-left:4px;
+			  margin-top:3px;
+			  color:#000;
+			}
+			.produce span {
+			  display:inline-block;
+			  width:20px;
+			  height:20px;
+			  border-radius:50%;
+			  background-color:#fff;
+			  margin-right:10px;
+			}
+			
+			.skill dl dd {
+			  height:10px;
+			  border:1px solid #fff;
+			  background-color:#fff;
+			}
+			
+			dl:first-child dd{
+			  width:50%;
+			  height:10px;
+			  border:1px solid #fff;
+			  background-color:#fff;
+			}
+			dl:nth-child(2) dd {
+			  width:60%;
+			}
+			dl:last-child dd {
+			  width:50%;
+			}
+			.rightDiv {
+			  float:left;
+			  width:70%;
+			  height:100%;
+			  padding:20px;
+			  color:#16163eed;
+			}
+			.history {
+			  width:100%;
+			}
+			.history p {
+			  font-size:18px;
+			  margin-bottom:0;
+			}
+			.history p i {
+			  display:inline-block;
+			  margin-right:10px;
+			}
+			.history hr {
+			  margin-top:5px
+			}
+			ul {
+			  list-style:none;
+			}
+			ul li {
+			  display:inline-block;
+			  padding:0px 30px;
+			}
+
+			/*按钮*/
+			.click-me {
+				margin: 20px auto;
+				padding: 5px 3px;
+				border: none;
+				border-radius: 3px;
+				background-color: cornflowerblue;
+				color: #FFFFFF;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<body>
+			  <div class="leftDiv">
+			    <div class="picture">
+			      <img src="http://bmvrmf.img48.wal8.com/img48/17289017_20180507205622/152569781632.jpg">
+			    </div>
+			    <div class="produce">
+			      <p><span><i class="glyphicon glyphicon-user"></i></span>XXX</p>
+			      <p><span><i class="glyphicon glyphicon glyphicon-tag"></i></span>21</p>
+			      <p><span><i class="glyphicon glyphicon glyphicon-modal-window"></i></span>湖北武汉</p>
+			      <p><span><i class="glyphicon glyphicon glyphicon glyphicon-phone"></i></span>12345678901</p>
+			      <p><span><i class="glyphicon glyphicon glyphicon glyphicon-envelope"></i></span>123456789@qq.com</p>
+			    </div>
+			    <div class="skill">
+			      <dl>
+			        <dt>html</dt>
+			        <dd></dd>
+			      </dl>
+			      <dl>
+			        <dt>css</dt>
+			        <dd></dd>
+			      </dl>
+			      <dl>
+			        <dt>js</dt>
+			        <dd></dd>
+			      </dl>
+			    </div>
+			    <div class="message">
+			    	<p>永远有一颗探索新技术的心</p>
+			    	<button class="click-me">Hi 你好啊</button>
+			    </div>
+			    
+			  </div>
+			<div class="rightDiv">
+			  <h3 class="name">XXX</h3>
+			  <p>求职意向:前端工程师</p>
+			  <div class="history">
+			    <p><i class="glyphicon glyphicon-education"></i>教育经历</p><hr />
+			    <ul class="edu">
+			      <li>2015.09-2019.06</li>
+			      <li>xx大学</li>
+			      <li>计算机与信息专业</li>
+			      <li>c语言 java c# 数据库           会计学 数据库新技术  数据结构  数据结构 数据结构 数据结构 数据结构 数据结构 数据结构 数据结构
+			    </ul>
+			    <p><i class="glyphicon glyphicon glyphicon-folder-open"></i>奖项</p><hr />
+			    <ul class="edu">
+			      <li>2015.09-2019.06</li>
+			      <li>xx大学</li>
+			      <li>计算机与信息专业</li>
+			      <li>c语言 java c# 数据库           会计学 数据库新技术  数据结构  数据结构 数据结构 数据结构 数据结构 数据结构 数据结构 数据结构
+			    </ul>
+			    <p><i class="glyphicon glyphicon glyphicon-folder-open"></i>工作经验</p><hr />
+			    <ul class="edu">
+			      <li>2015.09-2019.06</li>
+			      <li>xx大学</li>
+			      <li>计算机与信息专业</li>
+			      <li>c语言 java c# 数据库           会计学 数据库新技术  数据结构  数据结构 数据结构 数据结构 数据结构 数据结构 数据结构 数据结构
+			    </ul>
+			
+			  </div>
+  			</div>
+  			
+  			<script>
+  				document.getElementsByClassName("click-me")[0].onclick=function(){
+  					console.log("Hi 很高兴认识你")
+  				}
+  				
+//				今天最后一个练习，在你的简历中，实现一个，当用户访问页面的时候，根据当前时间，在页面中输出不同的问候语。
+//				比如早上的时候，输出早上好，晚上的时候是晚上好
+
+				var date=new Date();
+//				console.log(date.getHours());
+				var hour=date.getHours()
+
+				if(hour>=5&&hour<=11){
+					alert("早上好");
+				}else if(hour>11&&hour<=17){
+					alert("下午好");
+				}else if(hour>17&&hour<=24){
+					alert("晚上好");
+				}
+
+  			</script>
+</body>
+</html>
