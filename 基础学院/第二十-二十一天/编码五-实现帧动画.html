@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div.box{
+				width: 480px;
+				height: 480px;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			
+			window.onload=function(){
+				
+				var div=document.createElement('div');
+				div.style.background="url(http://ife.baidu.com/2016/static/img/erik_ce204002.jpg)"
+				document.body.appendChild(div);
+				div.setAttribute('class','box');
+				div.style.backgroundPosition="0px -960px"
+				
+				var timer=null;
+				
+				clearInterval(timer);
+				
+				var target=0,
+					speed=480,
+					target2=0;
+				
+				timer=setInterval(function(){
+					
+					div.style.backgroundPositionX="0px"
+					
+					if(target>-8160){
+						
+						target-=speed;
+						target2=target;
+						div.style.backgroundPositionY=target+'px';
+						console.log('targer.....',target);
+					}
+					
+					else if(target2>=-8160 && target2<0){
+						target2+=speed;
+						console.log('target2......',target2);
+						div.style.backgroundPositionY=target2+'px';
+						
+					}
+					
+					else{
+						clearInterval(timer);
+					}
+					
+					
+				},50)
+				
+				
+			}
+			
+		</script>
+	</body>
+</html>

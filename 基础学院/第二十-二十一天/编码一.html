@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="name" type="text">    
+		<button id="submit-btn">Submit</button>
+		
+		<!--当点击按钮 submit-btn 时，在console中输出 name 中的内容-->
+		
+		<script>
+			
+			var submit_btn=document.querySelector("#submit-btn")
+			
+			submit_btn.onclick=function(){
+				
+			//注意要在点击的时候获取到name才行  
+				var name=document.querySelector("#name")
+				console.log(name.value)
+			}
+			
+     		//在输入过程中，如果按回车键，则同样执行上一条的需求
+			document.onkeyup=function(e){
+				//e表示事件对象
+				if(e.keyCode===13){
+					var name=document.querySelector("#name")
+					console.log(name.value)
+				}
+			}
+			
+			//在输入过程中，如果按 ESC 键，则把输入框中的内容清空
+			document.onkeyup=function(e){
+				//e表示事件对象
+				if(e.keyCode===27){
+					var name=document.querySelector("#name")
+					
+					//注意表单元素中的内容用value
+					//文本元素用innerHTML
+					name.value=''
+					
+				}
+			}
+			
+			
+		</script>
+		
+		
+		
+			
+		
+		
+	</body>
+</html>
