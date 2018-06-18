@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input id="stack-input" type="text">
+		<p id="stack-cont">栈内容：apple-&gt;pear</p>    
+		<button id="push-btn">进栈</button>
+		<button id="pop-btn">退栈</button>
+		<button id="font-btn">打印栈顶元素内容</button>
+		<button id="empty-btn">判断栈是否为空</button>
+
+		<script>
+		
+		var stack = ["apple", "pear"];
+		
+		
+//		实现如阅读材料中，队列的相关进栈、退栈、获取栈顶、判空的操作
+//		栈顶对应数组中最后一个元素
+//		进栈和退栈操作后，需要在 id 为 stack-cont 的 p 标签中更新显示栈中的内容，栈顶在最右侧，中间用 -> 连接（练习使用数组的join方法）
+		
+		//进栈
+		function pushStack(str){
+			stack.push(str);
+			return stack;
+		}
+		
+//		document.getElementById("push-btn").onclick=function(){
+//			var str=document.getElementById("stack-input").value;
+//			document.getElementById("stack-cont").innerHTML="队列内容："
+//			document.getElementById("stack-cont").innerHTML+=pushStack(str).join("->");
+//		}
+		
+		//出栈   后进先出
+		function popStack(arr){
+			arr.pop();
+			return arr;
+		}
+		
+//		document.getElementById("pop-btn").onclick=function(){
+//			document.getElementById("stack-cont").innerHTML="栈内容："
+//			document.getElementById("stack-cont").innerHTML+=popStack(stack).join("->");
+//		}
+		
+//		打印栈顶元素内容   刚进去的地方是栈顶
+		function fontZhanDing(arr){
+			console.log(arr[arr.length-1]);
+		}
+		
+		document.getElementById("font-btn").onclick=function(){
+			fontZhanDing(stack);
+		}
+		
+//		判断队列是否为空
+		function isNull(arr){
+			if(arr.length===0){
+				alert("栈为空");
+				return;
+			}
+		}
+			
+		document.getElementById("empty-btn").onclick=function(){
+			isNull(stack);
+		}
+		
+		
+
+//		实现如阅读材料中，队列的相关进栈、退栈、获取栈顶、判空的操作
+//		栈顶对应数组中第一个元素
+//		进栈和退栈操作后，需要在 id 为 stack-cont 的 p 标签中更新显示栈中的内容，栈顶在最左侧，中间用 <- 连接（练习使用数组的join方法）
+
+		//进栈
+		function unshiftStack(str){
+			stack.unshift(str);
+			return stack;
+		}
+		
+		document.getElementById("push-btn").onclick=function(){
+			var str=document.getElementById("stack-input").value;
+			document.getElementById("stack-cont").innerHTML="栈内容："
+			document.getElementById("stack-cont").innerHTML+=unshiftStack(str).join("<-");
+		}
+		
+		//出栈
+		function shiftStack(arr){
+			arr.shift();
+			return arr;
+		}
+		
+		document.getElementById("pop-btn").onclick=function(){
+			var str=document.getElementById("stack-input").value;
+			document.getElementById("stack-cont").innerHTML="栈内容："
+			document.getElementById("stack-cont").innerHTML+=shiftStack(stack).join("<-");
+		}
+		
+		</script>
+	</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		
+			var tree = {
+			    "id": 0,
+			    "name": "root",
+			    "left": {
+			        "id": 1,
+			        "name": "Simon",
+			        "left": {
+			            "id": 3,
+			            "name": "Carl",
+			            "left": {
+			                "id": 7,
+			                "name": "Lee",
+			                "left": {
+			                    "id": 11,
+			                    "name": "Fate"
+			                }
+			            },
+			            "right": {
+			                "id": 8,
+			                "name": "Annie",
+			                "left": {
+			                    "id": 12,
+			                    "name": "Saber"
+			                }
+			            }
+			        },
+			        "right": {
+			            "id": 4,
+			            "name": "Tony",
+			            "left": {
+			                "id": 9,
+			                "name": "Candy"
+			            }
+			        }
+			    },
+			    "right": {
+			        "id": 2,
+			        "name": "right",
+			        "left": {
+			            "id": 5,
+			            "name": "Carl",
+			        },
+			        "right": {
+			            "id": 6,
+			            "name": "Carl",
+			            "right": {
+			                "id": 10,
+			                "name": "Kai"
+			            }        
+			        }
+			    }
+			}
+			
+			// 假设id和name均不会重复，根据输入name找到对应的id
+			function findIdByName(name) {
+//				for(var i=0;i<tree.length;i++){
+//					var obj=tree[i];
+//					for(var key in obj){
+//						
+//					}
+//				}
+				//遍历二叉树
+//				var arr=
+			}
+			
+			// 假设id和name均不会重复，根据输入id找到对应的name
+			function findNameById(id) {
+			
+			}
+			
+			// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+			function getListWithDLR() {
+			
+			}
+			
+			// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+			function getListWithLDR() {
+			
+			}
+			
+			// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+			function getListWithLRD() {
+			
+			}
+			
+			var obj = { 
+				a:{ 
+					name : "maoguotao", 
+					age : 18, 
+					sex : 'M', 
+				},
+				b:{ 
+					name : "maoshuqin", 
+					age : 18, 
+					sex : 'M', 
+				},
+				c:{ 
+					name : "MGT360124", 
+					age : 18, 
+					sex : 'M',
+					title : { 
+						job:"班长"
+					} 
+				} 
+			}; 
+			
+			//递归遍历对象
+			var arr = []; 
+			function f( obj ) { 
+				for( var i in obj ) { 
+					if ( typeof obj[i] === "object" ) { 
+						f ( obj[i] ); 
+					}else{ 
+						arr.push( obj[i] ); 
+					} 
+				} 
+			} 
+			
+			f( obj );
+			
+			console.log(arr);//["maoguotao", 18, "M", "maoshuqin", 18, "M", "MGT360124", 18, "M", "班长"]
+
+		
+		</script>
+	</body>
+</html>

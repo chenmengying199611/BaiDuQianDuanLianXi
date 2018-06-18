@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	
+	
+		<input id="queue-input" type="text">
+		<p id="queue-cont">队列内容：apple-&gt;pear</p>    
+		<button id="in-btn">入队</button>
+		<button id="out-btn">出队</button>
+		<button id="font-btn">打印队头元素内容</button>
+		<button id="empty-btn">判断队列是否为空</button>
+		
+		<script>
+		
+			var queue = ["apple", "pear"];
+			//基本队列  所有的函数操作都是在这个队列的基础上进行
+			
+//			实现如阅读材料中，队列的相关入队、出队、获取队头、判空的操作
+//			队头对应数组中最后一个元素!!!!!!
+//			入队和出队操作后，需要在 id 为 queue-cont 的 p 标签中更新显示队列中的内容，队头在最右侧，中间用 -> 连接（练习使用数组的join方法）
+			
+			//入队
+			function pushDuiLie(str){
+				var res=queue.push(str);//返回的是添加项之后的数组的长度
+				return queue;
+			}
+
+//			document.getElementById("in-btn").onclick=function(){
+//				var str=document.getElementById("queue-input").value;
+//				document.getElementById("queue-cont").innerHTML="队列内容："
+//				document.getElementById("queue-cont").innerHTML+=pushDuiLie(str).join("->");
+//			}
+			
+			//出队
+			function shiftDuiLie(arr){
+				arr.shift();//返回的是删除的那一项   删除数组中最前面的一项
+				return arr;//数组是删除了之后的数组
+			}
+//			document.getElementById("out-btn").onclick=function(){
+//				document.getElementById("queue-cont").innerHTML="队列内容："
+//				document.getElementById("queue-cont").innerHTML+=shiftDuiLie(queue).join("->");
+//			}
+
+//			打印队头元素内容
+			function printDuiTou(arr){
+				
+				console.log(arr[arr.length-1]);
+				
+			}
+			
+//			document.getElementById("font-btn").onclick=function(){
+//				printDuiTou(queue);
+//			}
+
+//			判断队列是否为空
+			function isNull(arr){
+				if(arr.length===0){
+					alert("队列为空");
+					return;
+				}
+			}
+			
+			document.getElementById("empty-btn").onclick=function(){
+				isNull(queue);
+			}
+			
+//			实现如阅读材料中，队列的相关入队、出队、获取队头、判空的操作
+//			队头对应数组中第一个元素
+//			入队和出队操作后，需要在 id 为 queue-cont 的 p 标签中更新显示队列中的内容，队头在最左侧，中间用 <- 连接（练习使用数组的join方法）
+
+			//入队
+			function unshiftDuiLie(str){//在数组的最前面添加元素  返回值是添加后的数组的长度
+				var res=queue.unshift(str);
+				console.log(queue);
+				return queue;
+				
+			}
+			
+			
+			document.getElementById("in-btn").onclick=function(){
+				var str=document.getElementById("queue-input").value;
+				document.getElementById("queue-cont").innerHTML="队列内容："
+				document.getElementById("queue-cont").innerHTML+=unshiftDuiLie(str).join("<-");
+			}
+			
+			//出队  后进后出  因为第一个是最后进的  所以最后出   所以是删除掉数组中最后一个元素
+			function popDuiLie(arr){//删除掉数组中最后面的元素
+				arr.pop();//返回被删除的那一项
+				return arr;
+			}
+			
+			document.getElementById("out-btn").onclick=function(){
+				var str=document.getElementById("queue-input").value;
+				document.getElementById("queue-cont").innerHTML="队列内容："
+				document.getElementById("queue-cont").innerHTML+=popDuiLie(queue).join("<-");
+			}
+			
+//			打印队头元素内容
+			function printFirstYuanSu(arr){
+				console.log(arr[0]);
+			}
+			document.getElementById("font-btn").onclick=function(){
+				printFirstYuanSu(queue);
+			}
+			
+			
+		</script>
+	</body>
+</html>

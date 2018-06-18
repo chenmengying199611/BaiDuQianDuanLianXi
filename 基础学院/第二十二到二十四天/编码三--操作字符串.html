@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			/*
+			实现一个字符串头尾去除空格的函数
+			注意需要去除的空格，包括全角、半角空格
+			暂时不需要学习和使用正则表达式的方式
+			*/
+			function diyTrim(str) {
+			    var result = "";
+			    result=str;
+			    var whitespace = new String(" \t\n\r"); 
+			    for(var i=0,len=result.length;i<len;i++){
+//			    	console.log(whitespace.indexOf(result.charAt(i)));//0说明匹配到了空格则不执行if条件直接将i加1   -1说明循环的时候i的值变化了之后就没有匹配上了
+			    	if(whitespace.indexOf(result.charAt(i))===-1){//匹配两个字符串中有没有相等的数 indexOf===-1说明没有
+			    		result=result.substring(i);//从i开始截到最后
+			    		break;//只要出现头部没有匹配到空格的情况下  就结束整个循环
+			    	}
+			    }
+			    for(var i=str.length-1;i>=0;i--){
+			    	if(whitespace.indexOf(result.charAt(i))===-1){
+			    		result=result.substring(0,i+1);//包左不包右  截到i为止
+			    		break;
+			    	}
+			    }
+			    
+			    return whitespace.indexOf(result.charAt(0))===-1?result:'';
+						
+			}
+			
+			
+			// 测试用例
+			console.log(diyTrim(' a f b    ')); // ->a f b
+			console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+			console.log(diyTrim('1    ')); // ->1
+			console.log(diyTrim('	f')); // ->f
+			console.log(diyTrim('	a f b 　　 ')); // ->a f b
+			console.log(diyTrim(' ')); // ->
+			console.log(diyTrim('　')); // ->
+			console.log(diyTrim('')); // ->
+			
+			/*
+			去掉字符串str中，连续重复的地方
+			*/
+			function removeRepetition(str) {
+			    var result = "",
+			    	unStr;
+				for(var i=0,len=str.length;i<len;i++){
+					//因为unStr始终是当前的str.charAt(i)的前一个字母   因为unStr的赋值unStr=str.charAt(i)是在上一轮循环完成的
+					//所以可以删除连续重复的地方
+					if(str.charAt(i)!==unStr){
+						unStr=str.charAt(i);
+						result+=unStr;
+						console.log(result);
+					}
+				}
+			    return result;
+			}
+			
+			// 测试用例
+			removeRepetition("aaa"); // ->a
+//			console.log(removeRepetition("abbba")); // ->aba
+//			console.log(removeRepetition("aabbaabb")); // ->abab
+//			console.log(removeRepetition("")); // ->
+//			console.log(removeRepetition("abc")); // ->abc
+		</script>
+	</body>
+</html>
