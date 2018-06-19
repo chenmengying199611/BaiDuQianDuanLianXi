@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<select id="year-select">
+		    <option value="2000">2000</option>
+		    <option value="2001">2001</option>
+		    <option value="2002">2002</option>
+		    <option value="2003">2003</option>
+		    <option value="2004">2004</option>
+		    <option value="2005">2005</option>
+		    <option value="2006">2006</option>
+		    <option value="2007">2007</option>
+		    <option value="2008">2008</option>
+		    <option value="2010">2010</option>
+		    <option value="2012">2012</option>
+		    <option value="2020">2020</option>
+		    <option value="2032">2032</option>
+		</select>
+
+		<select id="month-select">
+		    <option value="1">1</option>
+		    <option value="2">2</option>
+		    <option value="3">3</option>
+		    <option value="4">4</option>
+		    <option value="5">5</option>
+		    <option value="6">6</option>
+		    <option value="7">7</option>
+		    <option value="8">8</option>
+		    <option value="9">9</option>
+		    <option value="10">10</option>
+		   	<option value="11">11</option>
+		    <option value="12">12</option>
+		</select>
+
+		<select id="day-select">
+		    
+		</select>
+
+		<select id="hour-select">
+		    <option value="0">00</option>
+		    <option value="1">01</option>        
+		    ……
+		    <option value="23">23</option>
+		</select>
+
+		<select id="minite-select">
+		    <option value="0">0</option>
+		    <option value="1">1</option>
+		    ……
+		    <option>59</option>
+		</select>
+
+		<select id="second-select">
+		    <option value="0">0</option>
+		    <option value="1">1</option>
+		    ……
+		    <option>59</option>
+		</select>
+
+		<p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+		<select id="test"></select>
+		
+		<script>
+			
+//			使用上方的HTML结构（可以根据需要自行微调）为基础编写JavaScript代码
+//			当变更任何一个select选择时，更新 result-wrapper 的内容
+//			当所选时间早于现在时间时，文案为 现在距离 "所选时间" 已经过去 xxxx
+//			当所选时间晚于现在时间时，文案为 现在距离 "所选时间" 还有 xxxx
+//			注意当前时间经过所选时间时候的文案变化
+//			注意选择不同月份的时候，日期的可选范围不一样，比如1月可以选31天，11月只有30天，注意闰年
+//			同样，需要注意，通过优雅的函数封装，使得代码更加可读且可维护
+			
+			function createOption(i){
+				var option=document.createElement("option");
+				option.value=i;
+				option.innerHTML=i;
+				document.getElementById("day-select").appendChild(option);
+			}
+			
+			function createDay(year,mouth){
+				if(year%4==0 && mouth==2){
+					for(var i=1;i<=29;i++){
+						createOption(i);
+					}
+					
+				}
+				if(year%4!=0 && mouth==2){
+					for(var i=1;i<=28;i++){
+						createOption(i);
+					}
+					
+				}
+				if(mouth==1||mouth==3||mouth==5||mouth==7||mouth==8||mouth==10||mouth==10){
+					for(var i=0;i<=31;i++){
+						createOption(i);
+					}
+				}
+				if(mouth==4||mouth==6||mouth==9||mouth==11){
+					for(var i=0;i<=30;i++){
+						createOption(i);
+					}
+				}
+				
+				
+				
+			}
+			
+			createDay(2008,2);
+			
+			var year=2010;
+			
+			
+			
+		</script>
+		
+	</body>
+</html>
