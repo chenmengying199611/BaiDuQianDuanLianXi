@@ -1,121 +1,127 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-	</head>
-	<body>
-		<select id="year-select">
-		    <option value="2000">2000</option>
-		    <option value="2001">2001</option>
-		    <option value="2002">2002</option>
-		    <option value="2003">2003</option>
-		    <option value="2004">2004</option>
-		    <option value="2005">2005</option>
-		    <option value="2006">2006</option>
-		    <option value="2007">2007</option>
-		    <option value="2008">2008</option>
-		    <option value="2010">2010</option>
-		    <option value="2012">2012</option>
-		    <option value="2020">2020</option>
-		    <option value="2032">2032</option>
-		</select>
+﻿<!DOCTYPE html>
+<html lang="en">
 
-		<select id="month-select">
-		    <option value="1">1</option>
-		    <option value="2">2</option>
-		    <option value="3">3</option>
-		    <option value="4">4</option>
-		    <option value="5">5</option>
-		    <option value="6">6</option>
-		    <option value="7">7</option>
-		    <option value="8">8</option>
-		    <option value="9">9</option>
-		    <option value="10">10</option>
-		   	<option value="11">11</option>
-		    <option value="12">12</option>
-		</select>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
 
-		<select id="day-select">
-		    
-		</select>
+<body>
+    <select id="year-select">
+        <option value="1990">1990</option>
+    </select>
+    年
+    <select id="month-select">
+        <option value="1">1</option>
+    </select>
+    月
+    <select id="day-select">
+        <option value="1">1</option>
+    </select>
+    日
+    <select id="hour-select">
+        <option value="0">0</option>
+    </select>
+    时
+    <select id="minutes-select">
+        <option value="0">0</option>
+    </select>
+    分
+    <select id="second-select">
+        <option value="0">0</option>
+    </select>
+    秒
+    <p id="result-wrapper">
+        <span id="selectTime"></span>
+        <span id="Time"></span>
+    </p>
 
-		<select id="hour-select">
-		    <option value="0">00</option>
-		    <option value="1">01</option>        
-		    ……
-		    <option value="23">23</option>
-		</select>
+    <script>
+        const $year = document.getElementById("year-select");
+        const $months = document.getElementById("month-select");
+        const $day = document.getElementById("day-select");
+        const $hour = document.getElementById("hour-select");
+        const $minutes = document.getElementById("minutes-select");
+        const $second = document.getElementById("second-select");
+        const $selectTime = document.getElementById("selectTime");
+        const $Time = document.getElementById("Time");
+        const weeks = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+        const days = [null, "31", null, "31", "30", "31", "30", "31", "31", "30", "31", "30", "31"];
+        let selectDate = null;
+        // 批量插入option
+        function insertOption(select, start, end) {
+        	//新建一个空白文档 createDocumentFragment();
+            const $document = document.createDocumentFragment();
+            for (let i = start; i <= end; i++) {
+                const $option = document.createElement("option");
+                $option.value = i;
+                $option.innerHTML = i;
+                $document.append($option)
+            }
+            select.append($document)
+        }
+        // 监听并记录selcel的change事件
+        function changeEvent(e) {
+            changeMonths()
+            selectDate = new Date(`${$year.value}-${$months.value}-${$day.value} ${$hour.value}:${$minutes.value}:${$second.value}`);
+            $selectTime.innerHTML = `现在距离 ${$year.value}年${$months.value}月${$day.value}日${weeks[selectDate.getDay()]} ${$hour.value}:${$minutes.value}:${$second.value}`;
+            // 立即刷新
+            calculateTime()
+        }
+        // 闰年2月29
+        function checkYear() {
+            const year = $year.value;
+            return ((((year % 4) == 0) && (year % 100) != 0) || (year % 400 == 0)) ? "29" : "28";
+        }
+        // 修改天数范围
+        function changeMonths() {
+            // 记录修改前的日期，因为修改后会重置选择项
+            let selectedDay = $day.value;
+            // 清空所有option
+            $day.innerHTML = "";
+            // 根据平、闰年设置2月份天数
+            days[2] = checkYear()
+            // 根据已选的月份插入对应天数的option
+            insertOption($day, 1, days[$months.value])
+            // 设置为修改前的日期，如果超出了范围，就设置为当前月的最后一天
+            $day.value = $day.children.length < selectedDay ? $day.children.length : selectedDay;
+        }
+        // 计算剩余时间
+        function calculateTime() {
+            // 转换成秒数来计算
+            let nowTime = new Date().getTime();
+            let leftTime = selectDate.getTime() - nowTime;
+            $Time.innerHTML = leftTime > 0 ? "还有" : "已经过去";
+            leftTime = Math.abs(leftTime) / 1000;
+            // 先计算天数
+            let day = parseInt(leftTime / 60 / 24 / 60);
+            leftTime = leftTime - day * 24 * 60 * 60;
+            let hour = parseInt(leftTime / 3600)
+            let minutes = parseInt((leftTime % 3600) / 60);
+            let second = parseInt((leftTime % 3600) % 60);
+            $Time.innerHTML += `${day}天${hour}时${minutes}分${second}秒`
+        }
+        // 初始化
+        function init() {
+            // 初始化option选择项，实则偷懒，手动太麻烦了
+            insertOption($year, 1991, 2038)
+            insertOption($months, 2, 12)
+            insertOption($day, 2, 31)
+            insertOption($hour, 1, 23)
+            insertOption($minutes, 1, 59)
+            insertOption($second, 1, 59)
+            changeEvent()
+            calculateTime()
+            // 绑定change事件
+            window.addEventListener("change", changeEvent, false)
+            // 启动计时器
+            let timer = setInterval(() => {
+                calculateTime()
+            }, 1000)
+        }
+        init()
+    </script>
+</body>
 
-		<select id="minite-select">
-		    <option value="0">0</option>
-		    <option value="1">1</option>
-		    ……
-		    <option>59</option>
-		</select>
-
-		<select id="second-select">
-		    <option value="0">0</option>
-		    <option value="1">1</option>
-		    ……
-		    <option>59</option>
-		</select>
-
-		<p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
-		<select id="test"></select>
-		
-		<script>
-			
-//			使用上方的HTML结构（可以根据需要自行微调）为基础编写JavaScript代码
-//			当变更任何一个select选择时，更新 result-wrapper 的内容
-//			当所选时间早于现在时间时，文案为 现在距离 "所选时间" 已经过去 xxxx
-//			当所选时间晚于现在时间时，文案为 现在距离 "所选时间" 还有 xxxx
-//			注意当前时间经过所选时间时候的文案变化
-//			注意选择不同月份的时候，日期的可选范围不一样，比如1月可以选31天，11月只有30天，注意闰年
-//			同样，需要注意，通过优雅的函数封装，使得代码更加可读且可维护
-			
-			function createOption(i){
-				var option=document.createElement("option");
-				option.value=i;
-				option.innerHTML=i;
-				document.getElementById("day-select").appendChild(option);
-			}
-			
-			function createDay(year,mouth){
-				if(year%4==0 && mouth==2){
-					for(var i=1;i<=29;i++){
-						createOption(i);
-					}
-					
-				}
-				if(year%4!=0 && mouth==2){
-					for(var i=1;i<=28;i++){
-						createOption(i);
-					}
-					
-				}
-				if(mouth==1||mouth==3||mouth==5||mouth==7||mouth==8||mouth==10||mouth==10){
-					for(var i=0;i<=31;i++){
-						createOption(i);
-					}
-				}
-				if(mouth==4||mouth==6||mouth==9||mouth==11){
-					for(var i=0;i<=30;i++){
-						createOption(i);
-					}
-				}
-				
-				
-				
-			}
-			
-			createDay(2008,2);
-			
-			var year=2010;
-			
-			
-			
-		</script>
-		
-	</body>
 </html>
