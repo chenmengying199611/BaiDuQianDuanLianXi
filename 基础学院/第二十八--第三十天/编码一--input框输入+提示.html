@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+	            margin: 0;
+	            padding: 0;
+	            box-sizing: border-box;
+        	}
+
+	        .wrapper {
+	            margin: 50px;
+	        }
+	
+	        #email-input {
+	            width: 200px;
+	            height: 30px;
+	            padding-left: 10px;
+	        }
+	
+	        #email-sug-wrapper {
+	            list-style: none;
+	            width: 200px;
+	            border: 2px solid black;
+	            border-top: none;
+	        }
+	
+	        #email-sug-wrapper li {
+	            height: 30px;
+	            line-height: 30px;
+	            padding-left: 10px;
+	            /*用这个即可*/
+	            overflow: hidden;
+	        }
+	        /*使用CSS实现：鼠标滑过提示框的某一个提示时，这个提示内容背景色变化，表示鼠标经过了这个DOM节点*/
+	        #email-sug-wrapper li:hover {
+            	background-color: bisque;
+            	cursor: pointer;
+        	}
+        	.active {
+        		background-color: cadetblue;
+        	}
+		</style>
+	</head>
+	<body>
+		<div class="wrapper">
+		    <input id="email-input" type="text">
+		    <ul id="email-sug-wrapper" class="email-sug"></ul>
+		</div>
+		<script>
+			// 邮箱后缀List参考
+			var postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net'];
+			
+//			需求
+//			根据下面需求实现如示意图所示的邮箱输入提示功能，注意，根据要求只需实现下面功能
+//
+//			当用户没有任何输入时，提示框消失
+//			当用户输入字符后，显示提示框，并且把用户输入的内容自动拼上邮箱后缀进行显示
+//			暂时不用考虑示意图中的红色和蓝色背景色的逻辑
+//			注意用户输入中前后空格需要去除
+
+			var $email_input=document.getElementById("email-input");
+			var $email_sug_wrapper=document.getElementById("email-sug-wrapper");
+			var nowSelectTipIndex = 0; // 方向键所选中的index
+
+//			$email_input.onkeyup=function(){
+//				var $email_input_content=$email_input.value;
+//				
+//				if(!$email_input_content){
+//					$email_sug_wrapper.style.display="none";
+//				}else{
+//					$email_sug_wrapper.style.display="block";
+//					$email_sug_wrapper.innerHTML="";
+//					//先清空，然后再执行插入input的操作
+//					for(var i=0;i<postfixList.length;i++){
+////						
+//						var str=$email_input_content.trim()+"@"+postfixList[i];
+//						var $li=document.createElement("li");
+//						$li.innerHTML=str;
+//						$email_sug_wrapper.appendChild($li);
+//					}
+//				}
+//			}
+			
+//			一进入页面就将焦点放在输入框中
+			$email_input.focus();
+			
+			//发现用户输入
+			$email_input.oninput=function(){//运用oninput ：输入框中没有任何输入内容->无提示框
+				//获取用户输入
+				drawTipList();
+				// 控制email-sug-wrapper的显示/隐藏状态
+            	toggleTip();
+			}
+			
+//			鼠标如果点击某个提示，则提示内容进入输入框，同时提示框消失
+			//可以用事件委托的方式  将点击子元素变为点击父元素，这样即可以减少操作，也避免了没有生成li的问题
+			$email_sug_wrapper.onclick=function(e){
+				$email_input.value=htmlDecode(e.target.innerHTML);
+//				console.log(e.target);
+				$email_input.focus();
+				hideTipList()
+			}
+
+
+			//获取用户输入
+			// 获取输入框的内容
+	        function getInputValue() {
+	            return htmlEncode($email_input.value.replace(/\s/g, ''));
+	        }
+			
+//			生成提示框提示内容
+			function createTipList(){
+				// 用来拼接的用户输入内容 sValue
+				var sValue=getInputValue();
+				var eValue='';
+				//当用户输入含有 @ 符号时，我们选取用户输入的@前面的字符来和后缀拼接
+				if(sValue.indexOf("@")>=0){
+					
+					//一定要注意这里的顺序！！！如果sValue
+					//否则会拿不到eValue的值
+					eValue=sValue.split("@")[1];
+					sValue=sValue.split("@")[0];
+					
+				}
+//				console.log(eValue);
+				var postfixListArr = createTipListArr(eValue);
+				var $document=document.createDocumentFragment();
+//				console.log(postfixListArr);
+				postfixListArr.map((item,index)=>{
+					var $li=document.createElement("li");
+					
+//					classList 属性返回元素的类名，作为 DOMTokenList 对象。
+//					该属性用于在元素中添加，移除及切换 CSS 类。
+					$li.classList=index==nowSelectTipIndex?"active":'';
+					
+					$li.innerHTML=sValue+"@"+item;
+					$document.append($li);
+				})
+				
+				return $document;
+			}
+				
+//			当用户输入了 @ 及部分后缀时，只从 postfixList 选取符合用户输入预期的后缀，我们以前缀匹配为要求。
+//			当用户输入不满足任何前缀匹配时，则显示全部提示
+			function createTipListArr(text) {
+				//符合item.includes(text)这个条件返回true
+	            let arr = postfixList.filter((item) => item.includes(text))
+	            if (arr.length === 0)  arr = postfixList;
+	            return arr;
+        	}
+//			
+			// 获取生成提示框中的提示内容将内容添加到email-sug-wrapper中，先清空后插入
+			function drawTipList() {
+	            $email_sug_wrapper.innerHTML = "";
+	            $email_sug_wrapper.append(createTipList());
+        	}
+			
+			function toggleTip(){
+				if(!getInputValue()){
+					hideTipList();
+				}else{
+					showTipList();
+				}
+			}
+			
+			function hideTipList(){
+				$email_sug_wrapper.style.display="none";
+			}
+			
+			function showTipList(){
+				$email_sug_wrapper.style.display="block";
+			}
+			
+			//html转码
+			function htmlEncode(html){
+	            //1.首先动态创建一个容器标签元素，如DIV
+	            var temp = document.createElement ("div");
+	            //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+	            (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+	            //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+	            var output = temp.innerHTML;
+	            temp = null;
+	            return output;
+        	}
+
+			//html解码
+			function  htmlDecode(text){
+	            //1.首先动态创建一个容器标签元素，如DIV
+	            var temp = document.createElement("div");
+	            //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+	            temp.innerHTML = text;
+	            //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+	            var output = temp.innerText || temp.textContent;
+	            temp = null;
+	            return output;
+        	}
+
+//			需求
+//			我们给提示框加上3个按键的功能，分别是回车和上下键，使得可以通过键盘操作进行提示框的选择
+//			
+//			当有提示框的时候，默认第一个提示为被选择状态，用一个和鼠标滑过不一样的背景色来标识
+//			当有输入框的时候，按上键，可以向上移动选择状态，如果按键之前的被选择提示是第一个，则被选状态移到最下面一个
+//			当有输入框的时候，按下键，可以向下移动选择状态，如果按键之前的被选择提示是最后一个，则被选状态移到第一个
+//			当有输入框时，按回车键，则将当前被选中状态的提示内容，放到输入框中，并隐藏提示框
+//			当没有输入框的时候，这3个键盘按键无响应
+//			当用户输入发生改变的时候，选择状态都重新切回到第一个提示
+
+			// 方向键操作逻辑
+			// 方向键操作逻辑
+        $email_input.onkeyup = function (e) {
+            let len = $email_sug_wrapper.children.length - 1;
+            switch (e.keyCode) {
+                case 38: // up
+                    nowSelectTipIndex === 0 ? nowSelectTipIndex = len : nowSelectTipIndex--;
+                    drawTipList()
+                    break;
+
+                case 40: // down
+                    nowSelectTipIndex == len ? nowSelectTipIndex = 0 : nowSelectTipIndex++;
+                    drawTipList()
+                    break;
+
+                case 13: // enter
+                	if(!$email_sug_wrapper.children[nowSelectTipIndex]){
+                		return;
+                	}
+                    $email_input.value = htmlDecode($email_sug_wrapper.children[nowSelectTipIndex].innerHTML);
+                    hideTipList()
+                    break;
+
+				case 27:
+					$email_input.select();
+				
+                default:
+                //当用户输入发生改变的时候，选择状态都重新切回到第一个提示
+                    nowSelectTipIndex = 0;
+                    drawTipList()
+            }
+        }
+			
+		</script>
+	</body>
+</html>
