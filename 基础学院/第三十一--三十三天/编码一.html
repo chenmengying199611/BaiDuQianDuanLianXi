@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#region-select {
+				width: 100px;
+			}
+			table {
+				margin-top: 60px;
+			}
+			td {
+				padding: 5px 20px;
+				border: 1px solid #000000;
+				border-right: none;
+			}
+			table tr td{
+				border-right: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<select id="region-select">
+    		<option value="华东">华东</option>
+    		<option value="华南">华南</option>
+    		<option value="华北">华北</option>
+		</select>
+		
+			
+		<!--如果要从多个radio中选择一个 那么可以使用-->
+		<input type="radio" value="手机" name="aaa"/>手机
+		<input type="radio" value="笔记本" name="aaa"/>笔记本
+		<input type="radio" value="智能音箱" name="aaa"/>智能音箱
+		<table cellpadding="0" cellspacing="0">
+			
+		</table>
+		<script src="ife31data.js"></script>
+		<script>
+
+//			需求
+//			表单：我们先从最简单的表单开始，我们的数据维度有：月、地区、商品种类，表单选项的任务就是做这几个维度的筛选或者组合的设置。我们先只做一个，用来做示例，比如我们选择用地区，请用一个Select或者单选，让用户可以选择地区。选项应该包括华东、华南、华北三个地区。
+//			数据处理：接下来，我们根据用户选择的地区表单，从完整数据中，把对应选择地区的数据取出来。
+//			表格：最后，将上一步取出来数据渲染成表格，表格有一个表头，用于显示数据标题：商品、地区、1月、2月……12月，然后共有14列：商品、地区、以及12个月的销售情况
+			
+			var val=document.getElementById("region-select").value;
+			
+			
+			document.getElementById("region-select").onchange=function(){
+				val=document.getElementById("region-select").value;
+//				console.log(val);
+				console.log(getData(val));
+				var data=getData(val); //对应地区的数据
+				console.log(data.sale[data.product[0]].length);
+				
+				
+				
+				createTable(data);
+			}
+			
+			
+			function getData(val){
+				var obj={};
+				obj.regin=val;
+				obj.product=[];
+				obj.sale={};
+				//此时obj的结构是{regin:'地区名',product:["手机", "笔记本", "智能音箱"],sale:{"手机":[12个数据],"智能音箱":[12个数据],"笔记本":[12个数据]}}
+				sourceData.forEach(function(item,index){
+					if(item.region==val){
+						obj.product.push(item.product);
+						obj.sale[item.product]=item['sale']
+					}
+				})
+				return obj;
+			}
+			
+			function createTable(data){
+				
+				document.getElementsByTagName("table")[0].innerHTML='';
+				
+				var $table=document.getElementsByTagName('table')[0];
+				var arr=["商品","地区","一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"]
+				var $tr=document.createElement('tr');
+				$table.appendChild($tr);
+				
+				for(var c=0;c<arr.length;c++){
+					var $td=document.createElement('td');
+					$td.innerHTML=arr[c];
+					$tr.appendChild($td);
+				}
+				
+				for(var i=0;i<data.product.length;i++){
+					var $tr=document.createElement('tr');
+					var $td=document.createElement('td');
+					var $td2=document.createElement('td');
+					$td.innerHTML=data.product[i];
+					$td2.innerHTML=data.regin;
+					$tr.appendChild($td);
+					$tr.appendChild($td2);
+					$table.appendChild($tr);
+					for(var j=0;j<data.sale[data.product[0]].length;j++){
+						var $td=document.createElement('td');
+						$td.innerHTML=data.sale[data.product[i]][j];
+						$tr.appendChild($td);
+					}
+				}
+				
+			}
+			
+//			需求
+//			我们现在加入第二个表单，商品种类，依然是select或者radio，自选。
+//			两个表单项都存在，做并集的选择，比如选了华北，和手机，表示要看华北地区手机的销售情况
+//			两个表单项的选择互相不干扰，即改变其中一个时候，不会导致另外一个的选项的变化
+			
+			//获取被选中的单选按钮的值
+//			
+//				var radios=document.getElementsByName("aaa");
+//				for(var i=0;i<radios.length;i++){
+//					if(radios[i].checked){
+//						var value=radios[i].value;
+//					}
+//				}
+//				return value;
+//			}
+			
+			function getRadioValue(){
+				var radios=document.getElementsByName("aaa");
+				for(var i=0;i<radios.length;i++){
+					radios[i].onclick=function(){
+						if(this.checked){
+							var value=this.value;
+							return value;
+						}
+					}
+				}
+			}
+			
+			
+
+		</script>
+	</body>
+</html>
